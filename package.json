@@ -1,0 +1,31 @@
+{
+  "name": "generator-zxy",
+  "version": "1.0.0",
+  "description": "zxy项目框架，包含：api+service（dubbo服务）+async（异步服务）+web-server（restful接口）",
+  "files": [
+    "generators"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DoubleDD/generator-zxy.git"
+  },
+  "keywords": [
+    "yeoman-generator",
+    "generator-zxy",
+    "generator zxy",
+    "zxy generator"
+  ],
+  "author": "doubel-d/zpdhy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DoubleDD/generator-zxy/issues"
+  },
+  "homepage": "https://github.com/DoubleDD/generator-zxy#readme",
+  "dependencies": {
+    "yeoman-generator": "^4.0.2"
+  }
+}
