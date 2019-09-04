@@ -1,0 +1,1 @@
+package <%= package %>.<%= project %>.web.response;

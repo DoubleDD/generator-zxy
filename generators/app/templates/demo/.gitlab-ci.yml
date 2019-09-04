@@ -1,0 +1,75 @@
+stages:
+  - build
+
+variables:
+  PROJECT_NAME: <%= appName %>
+  PROJECT_VERSION: 1.0.0-SNAPSHOT
+  VERSION: $CI_BUILD_REF_NAME
+  POST_ADDRESS: empty
+
+build:
+  stage: build
+  script:
+    - sh sonar_preview.sh
+    - mvn clean compile -U
+  except:
+    - develop
+    - /^release-.*$/
+    - feature-release
+    - security
+    - master
+    - product
+    - sonar-publish
+
+build-develop-deploy:
+  variables: {POST_ADDRESS: cms}
+  stage: build
+  only:
+    - develop
+  script:
+    - mvn -N deploy -Dmaven.test.skip=true
+    - cd "${PROJECT_NAME}-api" && mvn -U clean deploy && cd ..
+    - mvn -U clean package -Dmaven.test.skip=true
+    - sh build
+    
+
+build-release-deploy:
+  variables: {POST_ADDRESS: test-cms}
+  stage: build
+  only:
+    - /^release-.*$/
+  script:
+    - mvn -N deploy
+    - cd "${PROJECT_NAME}-api" && mvn -U clean deploy && cd ..
+    - mvn -U clean package -Dmaven.test.skip=true
+    - sh build
+
+build-master-deploy:
+  variables: {POST_ADDRESS: chinamobile}
+  stage: build
+  only:
+    - master
+  script:
+    - mvn -N deploy
+    - cd "${PROJECT_NAME}-api" && mvn -U clean deploy && cd ..
+    - mvn -U clean package
+    - mvn package
+    - sh build
+
+build-performance-deploy:
+  variables: {POST_ADDRESS: performance}
+  stage: build
+  only:
+    - security
+  script:
+    - mvn -N deploy
+    - cd "${PROJECT_NAME}-api" && mvn -U clean deploy && cd ..
+    - mvn -U clean package -Dmaven.test.skip=true
+    - sh build
+
+sonar-publish:
+  stage: build
+  script:
+    - sh sonar_analyze.sh
+  only:
+    - sonar-publish

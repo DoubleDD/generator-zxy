@@ -1,0 +1,46 @@
+#!/bin/sh -x
+
+BUILD_VERSION="v`date +%Y%m%d%H%M`-$PROJECT_VERSION"
+REGISTRY_SERVER=harbor.zhixueyun.com:5000/zxy9
+
+for NAME in "service" "web-server" "async-service"; do
+    ls -la
+    # 第一步:构建镜像
+    if [ -e "${PROJECT_NAME}-${NAME}" ]; then
+        cd "${PROJECT_NAME}-${NAME}"
+        mkdir tmp
+        cp Dockerfile tmp
+        cp "target/${PROJECT_NAME}-${NAME}-${PROJECT_VERSION}.jar" tmp
+        cd tmp
+        docker login -u common -p Harbor12345 harbor.zhixueyun.com:5000
+        docker build -t "${REGISTRY_SERVER}/${PROJECT_NAME}-${NAME}:${BUILD_VERSION}-${VERSION}" .
+        docker push "${REGISTRY_SERVER}/${PROJECT_NAME}-${NAME}:${BUILD_VERSION}-${VERSION}"
+        docker rmi "${REGISTRY_SERVER}/${PROJECT_NAME}-${NAME}:${BUILD_VERSION}-${VERSION}"
+        cd ..
+        rm -rf tmp
+        cd ..
+    fi
+    # 第二步:推包
+    if [ $POST_ADDRESS = cms ]
+        then
+            curl -XPUT -d password=passit 10.25.172.224:8005/$PROJECT_NAME/$NAME/$BUILD_VERSION-$VERSION
+        elif [ $POST_ADDRESS = test-cms ]
+        then
+            curl -XPUT -d password=passit 10.25.172.224:8006/$PROJECT_NAME/$NAME/$BUILD_VERSION-$VERSION
+        elif [ $POST_ADDRESS = prezxy9 ]
+        then
+            curl -XPUT -d password=passit 10.161.230.201:8005/$PROJECT_NAME/$NAME/$BUILD_VERSION-$VERSION
+        elif [ $POST_ADDRESS = prodev9 ]
+        then
+            curl -XPUT -d password=passit 10.46.70.199:8005/$PROJECT_NAME/$NAME/$BUILD_VERSION-$VERSION
+        elif [ $POST_ADDRESS = chinamobile ]
+        then
+            curl -XPUT -d password=passit 10.162.70.87:8006/$PROJECT_NAME/$NAME/$BUILD_VERSION-$VERSION
+        elif [ $POST_ADDRESS = performance ]
+        then
+            curl -XPUT -d password=passit 10.47.92.186:8005/$PROJECT_NAME/$NAME/$BUILD_VERSION-$VERSION
+        elif [ $POST_ADDRESS = empty ]
+        then
+          echo "No push address"
+    fi
+done
