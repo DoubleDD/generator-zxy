@@ -64,9 +64,6 @@ module.exports = class extends Generator {
             appName: this.settings.project,
             user: this.settings.user
         };
-        this.log('sourceRoot=' + sourceRoot)
-        this.log('targetRoot=' + targetRoot)
-        this.log(data)
         // step1.获取demo文件夹下的非目录文件，将非目录文件拷贝出来
         this._private_step1(sourceRoot, targetRoot, data)
 
@@ -81,7 +78,7 @@ module.exports = class extends Generator {
      * @param {*} path 
      */
     _private_step1(source, target, data) {
-        this.log('step1.将非目录文件拷贝出来')
+        // this.log('step1.将非目录文件拷贝出来')
 
         fs.readdir(source, (err, files) => {
             if (err) {
@@ -97,7 +94,7 @@ module.exports = class extends Generator {
                 let targetFile = path.normalize(target + '/' + file);
                 this.fs.copyTpl(sourceFilePaht, targetFile, data);
             })
-            this.log('step1.将非目录文件拷贝出来 done!')
+            // this.log('step1.将非目录文件拷贝出来 done!')
         })
     }
 
@@ -108,7 +105,7 @@ module.exports = class extends Generator {
      * @param {*} data 
      */
     _private_step3(source, suffix, target, data) {
-        this.log(`step2.copy ${source} 文件夹`)
+        // this.log(`step2.copy ${source} 文件夹`)
 
         // 创建 api 目录
         let api_path = path.normalize(target + '/' + data.project + suffix);
@@ -122,7 +119,7 @@ module.exports = class extends Generator {
 
         // 复制 /src/main/java/demo/ 下的文件
         let source_main_package_path = path.normalize(source + '/src/main/java/demo');
-        this.log('拷贝main目录：' + source_main_package_path)
+        // this.log('拷贝main目录：' + source_main_package_path)
         this.fs.copyTpl(source_main_package_path, main_package_path, data);
 
         // 复制 /demo-api/ 下的其他文件
@@ -134,7 +131,7 @@ module.exports = class extends Generator {
             files.forEach(file => {
                 if (file != 'src') {
                     let sourceFilePaht = path.normalize(source + '/' + file);
-                    this.log('复制src并级文件：' + file + '->' + src_path)
+                    // this.log('复制src并级文件：' + file + '->' + src_path)
                     this.fs.copyTpl(sourceFilePaht, path.normalize(src_path + '/' + file), data);
                 }
             })
@@ -143,7 +140,7 @@ module.exports = class extends Generator {
 
         // 包路径 test文件夹
         let test_package_path = path.normalize(test_path + '/java/' + package_path);
-        this.log('创建测试目录：' + test_package_path)
+        // this.log('创建测试目录：' + test_package_path)
         mkdirp(test_package_path, (err) => {
             if (err) throw err;
         });
