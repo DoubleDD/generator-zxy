@@ -32,23 +32,26 @@ module.exports = class extends Generator {
 
     async prompting() {
         this.settings = await this.prompt([{
-            type: "input",
-            name: "project",
-            message: "Your project name",
-            default: this.project // 项目路径
-        },
-        {
-            type: "input",
-            name: "package",
-            message: "Your project package",
-            default: this.package // Default to current package name
-        },
-        {
-            type: "input",
-            name: "user",
-            message: "Your username",
-            default: this.user
-        }
+                type: "input",
+                name: "project",
+                message: "Your project name",
+                default: this.project, // 项目路径
+                store: true
+            },
+            {
+                type: "input",
+                name: "package",
+                message: "Your project package",
+                store: true,
+                default: this.package // Default to current package name
+            },
+            {
+                type: "input",
+                name: "user",
+                message: "Your username",
+                store: true,
+                default: this.user
+            }
         ]);
     }
 
@@ -69,7 +72,7 @@ module.exports = class extends Generator {
 
         this.subdirs.forEach(name => {
             let suffix = name.replace('demo', '');
-            this._private_step3(path.normalize(sourceRoot + '/' + name), suffix, targetRoot, data)
+            this._private_step2(path.normalize(sourceRoot + '/' + name), suffix, targetRoot, data)
         });
     }
 
@@ -104,23 +107,34 @@ module.exports = class extends Generator {
      * @param {*} target 
      * @param {*} data 
      */
-    _private_step3(source, suffix, target, data) {
+    _private_step2(source, suffix, target, data) {
         // this.log(`step2.copy ${source} 文件夹`)
 
         // 创建 api 目录
-        let api_path = path.normalize(target + '/' + data.project + suffix);
-        let src_path = path.normalize(api_path + '/src');
+        let module_path = path.normalize(target + '/' + data.project + suffix);
+        let src_path = path.normalize(module_path + '/src');
         let main_path = path.normalize(src_path + '/main');
         let test_path = path.normalize(src_path + '/test');
         let package_path = data.package.split('.').join('/');
 
-        // 包路径 mian文件夹
+        // java 文件夹
         let main_package_path = path.normalize(main_path + '/java/' + package_path);
-
         // 复制 /src/main/java/demo/ 下的文件
         let source_main_package_path = path.normalize(source + '/src/main/java/demo');
         // this.log('拷贝main目录：' + source_main_package_path)
         this.fs.copyTpl(source_main_package_path, main_package_path, data);
+
+
+        // resources 源文件夹
+        let source_res_path = path.normalize(source + '/src/main/resources');
+        fs.exists(source_res_path, exists => {
+            if (exists) {
+                // resources 目标文件夹
+                let main_resources_path = path.normalize(main_path + '/resources');
+                this.fs.copyTpl(source_res_path, main_resources_path, data);
+            }
+        })
+
 
         // 复制 /demo-api/ 下的其他文件
         fs.readdir(source, (err, files) => {
@@ -131,8 +145,8 @@ module.exports = class extends Generator {
             files.forEach(file => {
                 if (file != 'src') {
                     let sourceFilePaht = path.normalize(source + '/' + file);
-                    // this.log('复制src并级文件：' + file + '->' + src_path)
-                    this.fs.copyTpl(sourceFilePaht, path.normalize(src_path + '/' + file), data);
+                    // this.log('复制src并级文件：' + file + '->' + module_path)
+                    this.fs.copyTpl(sourceFilePaht, path.normalize(module_path + '/' + file), data);
                 }
             })
         })

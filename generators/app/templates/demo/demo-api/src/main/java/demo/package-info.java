@@ -1,1 +1,1 @@
-package <%= package %>.<%= project %>;
+package <%= package %>;

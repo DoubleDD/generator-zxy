@@ -16,4 +16,7 @@ public class MessageTypeContent {
      */
 
     public static final int CONTENT_CUSTOM_ORDER_INSERT = 70001;
+
+    //发送预警邮件
+    public static final int SEND_MESSAGE_WARNING_EMAIL = 11209;
 }
