@@ -1,4 +1,4 @@
-package <%= package %>.<%= project %>.utils;
+package <%= package %>.utils;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;

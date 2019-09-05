@@ -1,1 +1,1 @@
-package <%= package %>.<%= project %>.service.support;
+package <%= package %>.service.support;

@@ -1,10 +1,10 @@
-package <%= package %>.<%= project %>.service;
+package <%= package %>.service;
 
 import com.zxy.common.dao.spring.CommonDaoConfig;
 import com.zxy.common.rpc.spring.config.RPCServerConfig;
-import <%= package %>.<%= project %>.service.config.CacheConfig;
-import <%= package %>.<%= project %>.service.config.MessageConfig;
-import <%= package %>.<%= project %>.service.config.RpcConfig;
+import <%= package %>.service.config.CacheConfig;
+import <%= package %>.service.config.MessageConfig;
+import <%= package %>.service.config.RpcConfig;
 import org.jooq.Schema;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;

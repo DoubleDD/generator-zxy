@@ -1,1 +1,1 @@
-package <%= package %>.<%= project %>.web.controller;
+package <%= package %>.web.controller;

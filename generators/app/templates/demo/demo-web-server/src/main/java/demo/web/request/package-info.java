@@ -1,1 +1,1 @@
-package <%= package %>.<%= project %>.web.request;
+package <%= package %>.web.request;

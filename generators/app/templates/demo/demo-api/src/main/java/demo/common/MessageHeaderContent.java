@@ -1,4 +1,4 @@
-package <%= package %>.<%= project %>.common;
+package <%= package %>.common;
 
 /**
  * @author <%= user %>

@@ -1,1 +1,1 @@
-package <%= package %>.<%= project %>.async.listener;
+package <%= package %>.async.listener;

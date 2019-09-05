@@ -1,4 +1,4 @@
-package <%= package %>.<%= project %>.async.config;
+package <%= package %>.async.config;
 
 import com.zxy.common.message.consumer.AbstractMessageListener;
 import com.zxy.common.message.consumer.MessageException;

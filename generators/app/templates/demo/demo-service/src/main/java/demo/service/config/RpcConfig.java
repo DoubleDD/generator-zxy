@@ -1,4 +1,4 @@
-package <%= package %>.<%= project %>.service.config;
+package <%= package %>.service.config;
 
 
 import com.zxy.common.rpc.spring.config.RemoteServicePackageConfig;
@@ -13,6 +13,6 @@ public class RpcConfig {
 
     @Bean
     public RemoteServicePackageConfig remoteServicePackageConfig() {
-        return new RemoteServicePackageConfig(new String[]{"<%= package %>.<%= project %>.api"});
+        return new RemoteServicePackageConfig(new String[]{"<%= package %>.api"});
     }
 }

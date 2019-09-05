@@ -1,4 +1,4 @@
-package <%= package %>.<%= project %>.web.config;
+package <%= package %>.web.config;
 
 import com.zxy.common.message.provider.MessageSender;
 import com.zxy.common.restful.security.freq.support.DefaultFrequencyHandler;

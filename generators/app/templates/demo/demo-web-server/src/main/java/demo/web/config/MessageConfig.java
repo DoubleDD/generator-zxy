@@ -1,4 +1,4 @@
-package <%= package %>.<%= project %>.web.config;
+package <%= package %>.web.config;
 
 import com.zxy.common.message.CommonMessageConverter;
 import com.zxy.common.message.provider.MessageSender;

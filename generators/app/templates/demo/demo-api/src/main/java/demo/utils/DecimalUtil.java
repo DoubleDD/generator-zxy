@@ -1,4 +1,4 @@
-package <%= package %>.<%= project %>.utils;
+package <%= package %>.utils;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;

@@ -1,4 +1,4 @@
-package <%= package %>.<%= project %>.utils;
+package <%= package %>.utils;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;

@@ -1,1 +1,1 @@
-package <%= package %>.<%= project %>.jooq;
+package <%= package %>.jooq;

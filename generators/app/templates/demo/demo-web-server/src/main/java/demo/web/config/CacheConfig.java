@@ -1,4 +1,4 @@
-package <%= package %>.<%= project %>.web.config;
+package <%= package %>.web.config;
 
 import com.zxy.common.cache.CacheService;
 import com.zxy.common.cache.redis.ClusterRedis;

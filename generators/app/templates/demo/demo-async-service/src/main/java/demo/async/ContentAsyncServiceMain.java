@@ -1,11 +1,11 @@
-package <%= package %>.<%= project %>.async;
+package <%= package %>.async;
 
 import com.zxy.common.rpc.spring.config.RPCClientConfig;
-import <%= package %>.<%= project %>.async.config.CacheConfig;
-import <%= package %>.<%= project %>.async.config.InitListenerConfig;
-import <%= package %>.<%= project %>.async.config.MessageConfig;
-import <%= package %>.<%= project %>.async.config.TransactionConfig;
-import <%= package %>.<%= project %>.utils.SpringUtil;
+import <%= package %>.async.config.CacheConfig;
+import <%= package %>.async.config.InitListenerConfig;
+import <%= package %>.async.config.MessageConfig;
+import <%= package %>.async.config.TransactionConfig;
+import <%= package %>.utils.SpringUtil;
 import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.jooq.JooqAutoConfiguration;

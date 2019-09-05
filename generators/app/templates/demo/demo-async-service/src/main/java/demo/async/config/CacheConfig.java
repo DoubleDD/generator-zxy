@@ -1,4 +1,4 @@
-package <%= package %>.<%= project %>.async.config;
+package <%= package %>.async.config;
 
 import com.zxy.common.cache.CacheService;
 import com.zxy.common.cache.redis.ClusterRedis;

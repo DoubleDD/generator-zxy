@@ -1,4 +1,4 @@
-package <%= package %>.<%= project %>.async.config;
+package <%= package %>.async.config;
 
 import java.lang.annotation.*;
 

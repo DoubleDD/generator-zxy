@@ -1,4 +1,4 @@
-package <%= package %>.<%= project %>.web.response;
+package <%= package %>.web.response;
 
 /**
  * @author <%= user %>

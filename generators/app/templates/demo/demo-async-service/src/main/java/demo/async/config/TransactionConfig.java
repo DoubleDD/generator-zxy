@@ -1,4 +1,4 @@
-package <%= package %>.<%= project %>.async.config;
+package <%= package %>.async.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

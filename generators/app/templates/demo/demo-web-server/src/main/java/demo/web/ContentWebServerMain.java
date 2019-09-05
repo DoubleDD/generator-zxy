@@ -1,10 +1,10 @@
-package <%= package %>.<%= project %>.web;
+package <%= package %>.web;
 
 import com.zxy.common.rpc.spring.config.RPCClientConfig;
-import <%= package %>.<%= project %>.web.config.CacheConfig;
-import <%= package %>.<%= project %>.web.config.MessageConfig;
-import <%= package %>.<%= project %>.web.config.RestfulConfig;
-import <%= package %>.<%= project %>.web.config.WebConfig;
+import <%= package %>.web.config.CacheConfig;
+import <%= package %>.web.config.MessageConfig;
+import <%= package %>.web.config.RestfulConfig;
+import <%= package %>.web.config.WebConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;
 import org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration;

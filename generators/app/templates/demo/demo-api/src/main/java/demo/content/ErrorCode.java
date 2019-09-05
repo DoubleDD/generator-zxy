@@ -1,4 +1,4 @@
-package <%= package %>.<%= project %>.content;
+package <%= package %>.content;
 
 import com.zxy.common.base.exception.Code;
 

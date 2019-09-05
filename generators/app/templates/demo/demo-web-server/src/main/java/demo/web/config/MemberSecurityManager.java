@@ -1,4 +1,4 @@
-package <%= package %>.<%= project %>.web.config;
+package <%= package %>.web.config;
 
 import com.zxy.common.base.exception.UnprocessableException;
 import com.zxy.common.cache.Cache;
